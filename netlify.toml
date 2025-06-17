@@ -7,6 +7,3 @@
   command   = "npm run build"
   publish   = "public"
   functions = ".netlify/functions"
-
-[functions]
-  directory = ".netlify/functions"
