@@ -18,10 +18,24 @@
   <button id="go">Unlock PDFs</button>
 
   <script>
-    const fileInput   = document.getElementById('fileInput');
-    const pwdInput    = document.getElementById('pwdInput');
-    const togglePwd   = document.getElementById('togglePwd');
-    const goBtn       = document.getElementById('go');
+    const fileInput = document.getElementById('fileInput');
+    const pwdInput  = document.getElementById('pwdInput');
+    const togglePwd = document.getElementById('togglePwd');
+    const goBtn     = document.getElementById('go');
+
+    // Helper: read a File into a Base64 string
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // reader.result => "data:application/pdf;base64,JVBERi0xLjcKJ..."
+          const [, payload] = reader.result.split(',');
+          resolve(payload);
+        };
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+      });
+    }
 
     // Show / hide password
     togglePwd.addEventListener('click', () => {
@@ -31,38 +45,38 @@
     });
 
     goBtn.addEventListener('click', async () => {
-      const files = Array.from(fileInput.files);
+      const files    = Array.from(fileInput.files);
+      const password = pwdInput.value.trim();
       if (!files.length) return alert('Select at least one PDF.');
-      const password = pwdInput.value;
-      if (!password) return alert('Enter the PDF password.');
+      if (!password)   return alert('Enter the PDF password.');
 
       for (const file of files) {
-        // to base64
-        const buf    = await file.arrayBuffer();
-        const base64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+        try {
+          // safely get Base64
+          const fileBase64 = await fileToBase64(file);
 
-        // call your Netlify Function
-        const res = await fetch('/.netlify/functions/remove-password', {
-          method: 'POST',
-          body: JSON.stringify({ fileBase64: base64, password })
-        });
-        const { unlockedBase64, error } = await res.json();
-        if (error) {
-          alert(`${file.name} → ${error}`);
-          continue;
+          // call Netlify Function
+          const res = await fetch('/.netlify/functions/remove-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fileBase64, password })
+          });
+
+          const { unlockedBase64, error } = await res.json();
+          if (error) throw new Error(error);
+
+          // download the unlocked PDF
+          const blobUrl = `data:application/pdf;base64,${unlockedBase64}`;
+          const a       = document.createElement('a');
+          a.href        = blobUrl;
+          a.download    = `unlocked_${file.name}`;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } catch (err) {
+          console.error(err);
+          alert(`Error unlocking ${file.name} – ${err.message}`);
         }
-
-        // download
-        const bytes = Uint8Array.from(
-          atob(unlockedBase64),
-          (c) => c.charCodeAt(0)
-        );
-        const blob = new Blob([bytes], { type: 'application/pdf' });
-        const url  = URL.createObjectURL(blob);
-        const a    = document.createElement('a');
-        a.href     = url;
-        a.download = `unlocked_${file.name}`;
-        a.click();
       }
     });
   </script>
