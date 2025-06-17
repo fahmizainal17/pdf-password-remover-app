@@ -1,0 +1,23 @@
+{
+  "name": "pdf-password-remover-app",
+  "version": "1.0.0",
+  "description": "This app utilizes node.js framework and netlify to deploy , the app as what its name sounds , it can remove the password from the password-protected pdf , but  users must upload their pdf files and also key in their password.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fahmizainal17/pdf-password-remover-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fahmizainal17/pdf-password-remover-app/issues"
+  },
+  "homepage": "https://github.com/fahmizainal17/pdf-password-remover-app#readme",
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}
