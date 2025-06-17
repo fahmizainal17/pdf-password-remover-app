@@ -8,14 +8,63 @@
 <body>
   <h1>PDF Password Remover</h1>
 
-  <input type="file" id="fileInput" multiple />
-  <label>
-    <input type="checkbox" id="samePwd" checked />
-    Same password for all files
-  </label>
-  <input type="password" id="pwdInput" placeholder="Enter password" />
+  <input type="file" id="fileInput" multiple accept=".pdf"/>
+
+  <div class="pwd-wrapper">
+    <input type="password" id="pwdInput" placeholder="Enter password" />
+    <button id="togglePwd">Show</button>
+  </div>
+
   <button id="go">Unlock PDFs</button>
 
-  <script src="app.js"></script>
+  <script>
+    const fileInput   = document.getElementById('fileInput');
+    const pwdInput    = document.getElementById('pwdInput');
+    const togglePwd   = document.getElementById('togglePwd');
+    const goBtn       = document.getElementById('go');
+
+    // Show / hide password
+    togglePwd.addEventListener('click', () => {
+      const isHidden = pwdInput.type === 'password';
+      pwdInput.type  = isHidden ? 'text' : 'password';
+      togglePwd.textContent = isHidden ? 'Hide' : 'Show';
+    });
+
+    goBtn.addEventListener('click', async () => {
+      const files = Array.from(fileInput.files);
+      if (!files.length) return alert('Select at least one PDF.');
+      const password = pwdInput.value;
+      if (!password) return alert('Enter the PDF password.');
+
+      for (const file of files) {
+        // to base64
+        const buf    = await file.arrayBuffer();
+        const base64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+
+        // call your Netlify Function
+        const res = await fetch('/.netlify/functions/remove-password', {
+          method: 'POST',
+          body: JSON.stringify({ fileBase64: base64, password })
+        });
+        const { unlockedBase64, error } = await res.json();
+        if (error) {
+          alert(`${file.name} → ${error}`);
+          continue;
+        }
+
+        // download
+        const bytes = Uint8Array.from(
+          atob(unlockedBase64),
+          (c) => c.charCodeAt(0)
+        );
+        const blob = new Blob([bytes], { type: 'application/pdf' });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href     = url;
+        a.download = `unlocked_${file.name}`;
+        a.click();
+      }
+    });
+  </script>
 </body>
 </html>

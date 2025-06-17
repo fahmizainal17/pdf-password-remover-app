@@ -2,21 +2,15 @@ const { PDFDocument } = require('pdf-lib');
 
 exports.handler = async (event) => {
   try {
-    // Expect base64 PDF + password in JSON body
     const { fileBase64, password } = JSON.parse(event.body);
     const pdfBytes = Buffer.from(fileBase64, 'base64');
-
-    // Load encrypted PDF
-    const pdfDoc = await PDFDocument.load(pdfBytes, { password });
-
-    // Save unlocked PDF
-    const unlockedBytes = await pdfDoc.save();
-    const unlockedBase64 = Buffer.from(unlockedBytes).toString('base64');
-
+    const pdfDoc   = await PDFDocument.load(pdfBytes, { password });
+    const unlocked = await pdfDoc.save();
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ unlockedBase64 })
+      body: JSON.stringify({
+        unlockedBase64: Buffer.from(unlocked).toString('base64')
+      })
     };
   } catch (err) {
     return {

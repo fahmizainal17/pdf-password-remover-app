@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cp -R src/* public/",
-    "dev": "netlify dev",
+    "dev": "netlify dev --framework=\"#static\"",
     "deploy": "netlify deploy --prod"
   },
   "repository": {
