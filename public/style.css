@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+input[type="file"],
+input[type="password"],
+label,
+button {
+  display: block;
+  margin: 0.75rem auto;
+}
+
+input,
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+label {
+  font-size: 0.9rem;
+}

@@ -4,7 +4,10 @@
   "description": "This app utilizes node.js framework and netlify to deploy , the app as what its name sounds , it can remove the password from the password-protected pdf , but  users must upload their pdf files and also key in their password.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cp -R src/* public/",
+    "dev": "netlify dev",
+    "deploy": "netlify deploy --prod"
   },
   "repository": {
     "type": "git",
