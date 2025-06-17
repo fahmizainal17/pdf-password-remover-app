@@ -1,8 +1,7 @@
 [build]
-  publish   = "public"
-  functions = "functions"
+  command = "npm run build"
+  publish = "public"
+  functions = ".netlify/functions"
 
-[dev]
-  framework = "#static"
-  publish   = "public"
-  functions = "functions"
+[functions]
+  directory = ".netlify/functions"
