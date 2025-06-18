@@ -1,3 +1,4 @@
+````markdown
 # PDF Password Remover
 
 **Effortlessly Unlock Password-Protected PDFs in Your Browser**
@@ -41,7 +42,7 @@ All entirely in your browser—no CLI required.
 ```mermaid
 flowchart TD
     User -->|Upload PDFs & passwords| StreamlitApp[Streamlit App]
-    StreamlitApp -->|unlock_pdf()| PdfModule["PdfReader to PdfWriter"]
+    StreamlitApp -->|unlock_pdf| PdfModule[PdfReader to PdfWriter]
     PdfModule -->|Unlocked bytes| StreamlitApp
     StreamlitApp -->|Download| User
 ````
@@ -77,7 +78,7 @@ flowchart TD
 
 ## Project Structure
 
-```
+```text
 pdf-password-remover-app/
 ├─ assets/
 │  ├─ main_app_pic.png
@@ -140,3 +141,5 @@ pypdf
 
 MIT © 2025 Fahmi Zainal
 
+```
+```
