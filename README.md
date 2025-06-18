@@ -1,4 +1,3 @@
-````markdown
 # PDF Password Remover
 
 **Effortlessly Unlock Password-Protected PDFs in Your Browser**
