@@ -12,7 +12,7 @@
 
 ## Built With
 
-* **Markdown** • **Streamlit** • **Python** • **pypdf**
+- **Markdown** • **Streamlit** • **Python** • **pypdf**
 
 ---
 
@@ -20,10 +20,10 @@
 
 This Streamlit app lets you:
 
-1. **Upload** single or multiple password-protected PDF files
-2. **Enter** one common password or individual passwords per file
-3. **Remove** the password barrier with a single click
-4. **Download** unlocked PDFs individually or bundled in a ZIP archive
+1. **Upload** single or multiple password-protected PDF files  
+2. **Enter** one common password or individual passwords per file  
+3. **Remove** the password barrier with a single click  
+4. **Download** unlocked PDFs individually or bundled in a ZIP archive  
 
 All entirely in your browser—no CLI required.
 
@@ -41,10 +41,10 @@ All entirely in your browser—no CLI required.
 ```mermaid
 flowchart TD
     User -->|Upload PDFs & passwords| StreamlitApp[Streamlit App]
-    StreamlitApp -->|unlock_pdf()| PdfModule[PdfReader → PdfWriter]
+    StreamlitApp -->|unlock_pdf()| PdfModule["PdfReader to PdfWriter"]
     PdfModule -->|Unlocked bytes| StreamlitApp
     StreamlitApp -->|Download| User
-```
+````
 
 ---
 
@@ -139,3 +139,4 @@ pypdf
 ## License
 
 MIT © 2025 Fahmi Zainal
+
