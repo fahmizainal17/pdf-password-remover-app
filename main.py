@@ -4,6 +4,7 @@ import io
 from pypdf import PdfReader, PdfWriter
 import zipfile
 from typing import List, Tuple
+from component import page_style
 
 def unlock_pdf(pdf_file, password: str) -> Tuple[bytes, bool, str]:
     """
@@ -53,32 +54,14 @@ def create_zip_file(unlocked_files: List[Tuple[str, bytes]]) -> bytes:
     return zip_buffer.getvalue()
 
 def main():
-    st.set_page_config(
-        page_title="PDF Password Remover",
-        page_icon="🔓",
-        layout="wide"
-    )
+
+    page_style()
 
     # Initialize session state for persistence
     if 'unlocked_files' not in st.session_state:
         st.session_state.unlocked_files = []
     if 'results' not in st.session_state:
         st.session_state.results = []
-
-    # Sidebar instructions and footer
-    with st.sidebar:
-        st.markdown("""
-        ## ℹ️ How to use this app
-        1. **Upload PDFs**: Click on the file uploader and select one or more password-protected PDF files
-        2. **Set Passwords**: 
-           - Toggle ON "Use same password" if all PDFs have the same password
-           - Toggle OFF to enter individual passwords for each PDF
-        3. **Process**: Click "Remove Passwords" to unlock your PDFs
-        4. **Download**: Download individual files or all files as a ZIP archive
-        
-        **Note**: This app removes passwords from PDFs for convenience. Make sure you have the right to modify these documents.
-        """)
-    st.sidebar.markdown("---")
 
     st.title("🔓 PDF Password Remover")
     st.markdown("Upload password-protected PDFs and remove their passwords for easier access.")

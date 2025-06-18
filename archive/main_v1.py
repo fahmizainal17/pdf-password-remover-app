@@ -53,12 +53,6 @@ def create_zip_file(unlocked_files: List[Tuple[str, bytes]]) -> bytes:
     return zip_buffer.getvalue()
 
 def main():
-    st.set_page_config(
-        page_title="PDF Password Remover",
-        page_icon="🔓",
-        layout="wide"
-    )
-    
     st.title("🔓 PDF Password Remover")
     st.markdown("Upload password-protected PDFs and remove their passwords for easier access.")
     
