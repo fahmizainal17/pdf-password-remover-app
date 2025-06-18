@@ -1,3 +1,90 @@
+# === Python ===
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.noseids/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff
+local_settings.py
+db.sqlite3
+
+# Flask stuff
+instance/
+.webassets-cache
+
+# Scrapy stuff
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# Mypy, Pyre, Pytype, etc.
+.mypy_cache/
+.pyre/
+.pytype/
+
+# === Node & JavaScript ===
 # Logs
 logs
 *.log
@@ -73,13 +160,12 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
 .env.local
 
-# parcel-bundler cache (https://parceljs.org/)
+# Parcel-bundler cache
 .cache
 .parcel-cache
 
@@ -93,9 +179,7 @@ dist
 
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and not Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
-# public
+# public   # uncomment if only using Gatsby
 
 # vuepress build output
 .vuepress/dist
@@ -125,10 +209,10 @@ dist
 # TernJS port file
 .tern-port
 
-# Stores VSCode versions used for testing VSCode extensions
+# VSCode test storage
 .vscode-test
 
-# yarn v2
+# Yarn v2
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
