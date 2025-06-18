@@ -139,6 +139,3 @@ pypdf
 ## License
 
 MIT © 2025 Fahmi Zainal
-
-```
-```
