@@ -1,6 +1,6 @@
 # PDF Password Remover
 
-**Quickly strip passwords from your encrypted PDF files with an intuitive Streamlit UI**
+**Effortlessly Unlock Password-Protected PDFs in Your Browser**
 
 ---
 
@@ -12,27 +12,27 @@
 
 ## Built With
 
-- **Markdown** • **Streamlit** • **Python** • **pypdf**
+* **Markdown** • **Streamlit** • **Python** • **pypdf**
 
 ---
 
 ## Overview
 
-This repository hosts a Streamlit app that lets you:
+This Streamlit app lets you:
 
-1. **Upload** one or more password-protected PDF files  
-2. **Enter** the password(s) (single or per-file)  
-3. **Unlock** your PDFs at the click of a button  
-4. **Download** the decrypted PDFs individually or in a ZIP archive  
+1. **Upload** single or multiple password-protected PDF files
+2. **Enter** one common password or individual passwords per file
+3. **Remove** the password barrier with a single click
+4. **Download** unlocked PDFs individually or bundled in a ZIP archive
 
-No command-line fiddling—everything runs in your browser.
+All entirely in your browser—no CLI required.
 
-### Demo
+### Demo Example
 
-<div align="center">
+<p align="center">
   <img src="assets/main_app_pic.png" width="600px" alt="Main App Interface">
-  <p><em>Main upload screen</em></p>
-</div>
+  <br><em>Main upload screen</em>
+</p>
 
 ---
 
@@ -40,42 +40,38 @@ No command-line fiddling—everything runs in your browser.
 
 ```mermaid
 flowchart TD
-    U[User] -->|Uploads PDFs & passwords| A[Streamlit App]
-    A --> B[unlock_pdf() function]
-    B --> C[PdfReader → PdfWriter]
-    C --> D[Unlocked PDF bytes]
-    D --> A
-    A -->|Downloads| U
-````
+    User -->|Upload PDFs & passwords| StreamlitApp[Streamlit App]
+    StreamlitApp -->|unlock_pdf()| PdfModule[PdfReader → PdfWriter]
+    PdfModule -->|Unlocked bytes| StreamlitApp
+    StreamlitApp -->|Download| User
+```
 
 ---
 
 ## Features
 
-* **Bulk PDF handling**: Upload multiple files at once
-* **Flexible passwords**: Use one password for all files or individual per-file entry
-* **Progress feedback**: See a progress bar and status messages
-* **Session persistence**: Download UI stays alive even after reruns
-* **Single-click download**: Grab individual PDFs or a ZIP of all unlocked files
+* **Bulk Handling** – Upload multiple PDFs at once
+* **Flexible Passwords** – Single or per-file password entry
+* **Progress Indicators** – Visual progress bar and status messages
+* **Session Persistence** – Download links survive page reruns
+* **ZIP Export** – Bundle all unlocked files in one archive
 
 ---
 
 ## Screenshots
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="assets/remove_password_pic.png" width="300px" alt="Removing Passwords">
-        <p><em>Entering password & processing</em></p>
-      </td>
-      <td align="center">
-        <img src="assets/result_pic.png" width="300px" alt="Results & Downloads">
-        <p><em>Results summary & download options</em></p>
-      </td>
-    </tr>
-  </table>
-</div>
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="assets/remove_password_pic.png" width="300px" alt="Removing Passwords">
+      <p><em>Enter password & process</em></p>
+    </td>
+    <td align="center">
+      <img src="assets/result_pic.png" width="300px" alt="Results & Downloads">
+      <p><em>Results summary & download options</em></p>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -97,15 +93,23 @@ pdf-password-remover-app/
 
 ## Installation
 
-```bash
-git clone https://github.com/yourusername/pdf-password-remover-app.git
-cd pdf-password-remover-app
-python3 -m venv .venv
-source .venv/bin/activate       # macOS/Linux
-# or .venv\Scripts\activate     # Windows
+1. **Clone the repo**
 
-pip install -r requirements.txt
-```
+   ```bash
+   git clone https://github.com/yourusername/pdf-password-remover-app.git
+   cd pdf-password-remover-app
+   ```
+2. **Create & activate a virtual env**
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate   # macOS/Linux
+   ```
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ---
 
@@ -115,14 +119,23 @@ pip install -r requirements.txt
 streamlit run main.py --server.fileWatcherType none
 ```
 
-1. Open the URL shown in your terminal.
-2. Upload your encrypted PDFs.
+1. Open the provided localhost URL in your browser.
+2. Upload one or more encrypted PDFs.
 3. Enter the password(s).
 4. Click **Remove Passwords**.
 5. Download unlocked PDFs individually or as a ZIP.
 
 ---
 
+## Requirements
+
+```text
+streamlit
+pypdf
+```
+
+---
+
 ## License
 
-License © 2025 Fahmi Zainal
+MIT © 2025 Fahmi Zainal
